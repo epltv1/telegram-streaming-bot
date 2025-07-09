@@ -28,7 +28,7 @@ bot_start_time = datetime.now()
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Send a welcome message with an image."""
-    image_url = "https://i.postimg.cc/7Z5qW2kV/welcome.jpg"  # Replace with your welcome image
+    image_url = "https://i.postimg.cc/9Q9dW4c5/image.jpg"  # Replace with your welcome image
     await update.message.reply_photo(
         photo=image_url,
         caption="Welcome to the Streaming Bot! Use /help to see available commands."
@@ -36,7 +36,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Display help message with an image."""
-    image_url = "https://i.postimg.cc/4x7W2kVv/help.jpg"  # Replace with your help image
+    image_url = "https://i.postimg.cc/9Q9dW4c5/image.jpg"  # Replace with your help image
     help_text = (
         "/stream <m3u8_url> <rtmp_url> <stream_key> - Start streaming (e.g., /stream http://example.com/playlist.m3u8 rtmp://a.rtmp.youtube.com/live2 abcd-1234-efgh-5678)\n"
         "/list - List all active streams with IDs\n"
@@ -55,7 +55,7 @@ async def stream(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = command_text.split(" ", 2)
 
     if len(args) != 3:
-        image_url = "https://i.postimg.cc/9F5qW2kV/error.jpg"  # Replace with your error image
+        image_url = "https://i.postimg.cc/9Q9dW4c5/image.jpg"  # Replace with your error image
         await update.message.reply_photo(
             photo=image_url,
             caption=f"Usage: /stream <m3u8_url> <rtmp_url> <stream_key>\n"
@@ -66,7 +66,7 @@ async def stream(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     m3u8_url, rtmp_url, stream_key = args
     if not m3u8_url.startswith("http") or not rtmp_url.startswith("rtmp"):
-        image_url = "https://i.postimg.cc/9F5qW2kV/error.jpg"
+        image_url = "https://i.postimg.cc/9Q9dW4c5/image.jpg"
         await update.message.reply_photo(photo=image_url, caption="Invalid M3U8 or RTMP URL.")
         return
 
@@ -114,13 +114,13 @@ async def stream(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "start_time": datetime.now(),
             "bitrate": "2000k"
         }
-        image_url = "https://i.postimg.cc/7Z5qW2kV/stream.jpg"  # Replace with your stream image
+        image_url = "https://i.postimg.cc/9Q9dW4c5/image.jpg"  # Replace with your stream image
         await update.message.reply_photo(
             photo=image_url,
             caption=f"Started stream {stream_id} from {m3u8_url} to {full_rtmp_url}"
         )
     except Exception as e:
-        image_url = "https://i.postimg.cc/9F5qW2kV/error.jpg"
+        image_url = "https://i.postimg.cc/9Q9dW4c5/image.jpg"
         await update.message.reply_photo(
             photo=image_url,
             caption=f"Error starting stream: {str(e)}"
@@ -129,7 +129,7 @@ async def stream(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def list_streams(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """List all active streams with IDs."""
-    image_url = "https://i.postimg.cc/4x7W2kVv/list.jpg"  # Replace with your list image
+    image_url = "https://i.postimg.cc/9Q9dW4c5/image.jpg"  # Replace with your list image
     if not active_streams:
         await update.message.reply_photo(photo=image_url, caption="No active streams.")
         return
@@ -145,7 +145,7 @@ async def list_streams(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Stop all streams or a specific stream by ID."""
     global active_streams
-    image_url = "https://i.postimg.cc/9F5qW2kV/stop.jpg"  # Replace with your stop image
+    image_url = "https://i.postimg.cc/9Q9dW4c5/image.jpg"  # Replace with your stop image
     args = update.message.text.split()
     if len(args) == 1:
         # Stop all streams
@@ -198,7 +198,7 @@ async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def stream_stat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show stats for active streams."""
-    image_url = "https://i.postimg.cc/4x7W2kVv/stats.jpg"  # Replace with your stats image
+    image_url = "https://i.postimg.cc/9Q9dW4c5/image.jpg"  # Replace with your stats image
     if not active_streams:
         await update.message.reply_photo(photo=image_url, caption="No active streams.")
         return
@@ -220,7 +220,7 @@ async def stream_stat(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def stat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show bot uptime."""
-    image_url = "https://i.postimg.cc/4x7W2kVv/uptime.jpg"  # Replace with your uptime image
+    image_url = "https://i.postimg.cc/9Q9dW4c5/image.jpg"  # Replace with your uptime image
     uptime = datetime.now() - bot_start_time
     uptime_str = str(timedelta(seconds=int(uptime.total_seconds())))
     await update.message.reply_photo(
