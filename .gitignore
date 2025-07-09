@@ -1,1 +1,2 @@
 .env
+ffmpeg_log_*.txt
